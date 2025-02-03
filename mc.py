@@ -3,6 +3,8 @@ import subprocess
 import time
 import optparse
 import random
+from security import safe_command
+
 def random_mac():
     hexa = ["1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
 
@@ -31,9 +33,9 @@ def arg():
     return options
 def mc(interface,new_mac):
     print(f"Changing Mac Adress for {interface} to {new_mac}")
-    subprocess.call(f"sudo ifconfig {interface} down",shell=True)
-    subprocess.call(f"sudo ifconfig {interface} hw ether {new_mac}",shell=True)
-    subprocess.call(f"sudo ifconfig {interface} up",shell=True)
+    safe_command.run(subprocess.call, f"sudo ifconfig {interface} down",shell=True)
+    safe_command.run(subprocess.call, f"sudo ifconfig {interface} hw ether {new_mac}",shell=True)
+    safe_command.run(subprocess.call, f"sudo ifconfig {interface} up",shell=True)
 
 
 
