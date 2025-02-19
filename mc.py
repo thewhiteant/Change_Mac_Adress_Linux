@@ -2,13 +2,14 @@
 import subprocess
 import time
 import optparse
-import random
+import secrets
+
 def random_mac():
     hexa = ["1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
 
     mac = ""
     for i in range(5):
-        y = (random.choice(hexa),2)
+        y = (secrets.choice(hexa),2)
         y1 = str(y[0])
         y2 = str(y[1]) 
         yf = y1 + y2
